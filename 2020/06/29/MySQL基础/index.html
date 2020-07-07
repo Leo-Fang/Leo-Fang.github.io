@@ -72,7 +72,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/06/29/MySQL%E5%9F%BA%E7%A1%80/image-20200706213416031.png">
 <meta property="og:image" content="http://yoursite.com/2020/06/29/MySQL%E5%9F%BA%E7%A1%80/image-20200706213452393.png">
 <meta property="article:published_time" content="2020-06-29T12:43:51.573Z">
-<meta property="article:modified_time" content="2020-07-07T07:32:26.419Z">
+<meta property="article:modified_time" content="2020-07-07T10:48:28.631Z">
 <meta property="article:author" content="Leo-Fang">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://yoursite.com/2020/06/29/MySQL%E5%9F%BA%E7%A1%80/image-20200701145722301.png">
@@ -235,7 +235,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-07 15:32:26" itemprop="dateModified" datetime="2020-07-07T15:32:26+08:00">2020-07-07</time>
+                <time title="修改时间：2020-07-07 18:48:28" itemprop="dateModified" datetime="2020-07-07T18:48:28+08:00">2020-07-07</time>
               </span>
 
           
@@ -281,6 +281,8 @@
 <p>①持久化数据到本地</p>
 <p>②可以实现结构化查询，方便管理</p>
 <a id="more"></a>
+
+
 
 <h4 id="二、数据库的相关概念"><a href="#二、数据库的相关概念" class="headerlink" title="二、数据库的相关概念"></a>二、数据库的相关概念</h4><p>DB（Database）：数据库，存储数据的“仓库”，保存了一系列有组织的数据。</p>
 <p>DBMS（Database Management System）：数据库管理系统 ，又称为数据库软件（产品），用于管理DB中的数据。常见的数据库管理系统：MySQL、Oracle、DB2、SqlServer等</p>
@@ -627,6 +629,8 @@
 <h5 id="10-查询总结"><a href="#10-查询总结" class="headerlink" title="10.查询总结"></a>10.查询总结</h5><p>语法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT 查询列表					⑦</span><br><span class="line">FROM 表1 别名1       			 ①</span><br><span class="line">连接类型 JOIN 表2 别名2		  ②</span><br><span class="line">ON 连接条件						③</span><br><span class="line">WHERE 筛选					 ④</span><br><span class="line">GROUP BY 分组列表				⑤</span><br><span class="line">HAVING 筛选					 ⑥</span><br><span class="line">ORDER BY 排序列表				⑧</span><br><span class="line">LIMIT 起始条目索引,条目数;		 ⑨</span><br></pre></td></tr></table></figure>
 
+
+
 <h4 id="六、DML语言"><a href="#六、DML语言" class="headerlink" title="六、DML语言"></a>六、DML语言</h4><p>DML(Data Manipulate Language)——数据操作语言</p>
 <p>插入：INSERT    修改：UPDATE    删除：DELETE</p>
 <h5 id="1-插入语句"><a href="#1-插入语句" class="headerlink" title="1.插入语句"></a>1.插入语句</h5><h6 id="方式一"><a href="#方式一" class="headerlink" title="方式一"></a>方式一</h6><p>①语法</p>
@@ -675,6 +679,8 @@
 <p>d.DELETE删除有返回值，而TRUNCATE删除没有返回值</p>
 <p>c.DELETE删除可以回滚，而TRUNCATE删除不能回滚</p>
 <img src="/2020/06/29/MySQL%E5%9F%BA%E7%A1%80/image-20200704202237194.png" class="">
+
+
 
 <h4 id="七、DDL语言"><a href="#七、DDL语言" class="headerlink" title="七、DDL语言"></a>七、DDL语言</h4><p>DDL(Data Define Language)——数据定义语言</p>
 <h5 id="1-库的管理"><a href="#1-库的管理" class="headerlink" title="1.库的管理"></a>1.库的管理</h5><h6 id="1-创建库"><a href="#1-创建库" class="headerlink" title="(1)创建库"></a>(1)创建库</h6><p>语法</p>
@@ -951,6 +957,8 @@
 
 <img src="/2020/06/29/MySQL%E5%9F%BA%E7%A1%80/image-20200705205418292.png" class="">
 
+
+
 <h4 id="八、TCL语言"><a href="#八、TCL语言" class="headerlink" title="八、TCL语言"></a>八、TCL语言</h4><p>TCL(Transaction Control Language)：事务控制语言</p>
 <h5 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1.介绍"></a>1.介绍</h5><p>1.事务：一个或一组SQL语句组成一个执行单元，这个执行单元要么全部执行，要么全部不执行。</p>
 <p>2.MySQL中的存储引擎</p>
@@ -1019,6 +1027,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查看当前的隔离级别</span><br><span class="line">select @@tx_isolation;</span><br><span class="line"></span><br><span class="line">#设置当前MySQL连接的隔离级别</span><br><span class="line">set transaction isolation level read committed;</span><br><span class="line"></span><br><span class="line">#设置数据库系统全局的隔离级别</span><br><span class="line">set global transaction isolation level read committed;</span><br></pre></td></tr></table></figure>
 
 <img src="/2020/06/29/MySQL%E5%9F%BA%E7%A1%80/image-20200706111024520.png" class="">
+
+
 
 <h4 id="九、视图"><a href="#九、视图" class="headerlink" title="九、视图"></a>九、视图</h4><h5 id="1-介绍-1"><a href="#1-介绍-1" class="headerlink" title="1.介绍"></a>1.介绍</h5><p>①含义：MySQL15.1版本出现的新特性，本身是一个虚拟表，它的数据来自于表，通过执行时动态生成，只保存了SQL逻辑，不保存查询结果</p>
 <p>②好处：</p>
@@ -1116,6 +1126,8 @@
 </tr>
 </tbody></table>
 <img src="/2020/06/29/MySQL%E5%9F%BA%E7%A1%80/image-20200706161253864.png" class="">
+
+
 
 <h4 id="十一、存储过程和函数"><a href="#十一、存储过程和函数" class="headerlink" title="十一、存储过程和函数"></a>十一、存储过程和函数</h4><p>说明：都类似于Java中的方法，将一组完成特定功能的逻辑语句包装起来，对外暴露名字</p>
 <h5 id="1-存储过程"><a href="#1-存储过程" class="headerlink" title="1.存储过程"></a>1.存储过程</h5><p>①含义：一组预先编译好的SQL语句的集合，理解成批量处理语句</p>
@@ -1355,7 +1367,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共14.1k字</span>
+  <span class="post-count">博客全站共14k字</span>
 </div>
 
         
