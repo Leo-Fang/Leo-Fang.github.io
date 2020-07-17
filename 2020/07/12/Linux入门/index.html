@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一、VM和Linux系统(CentOS)的安装1.安装VM①在BIOS里修改设置，开启虚拟化设备支持（不同品牌电脑开启的方式会略有不同，百度一下你就知道） ②安装虚拟机软件VM12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux入门">
+<meta property="og:url" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Ale&#39;s Blog">
+<meta property="og:description" content="一、VM和Linux系统(CentOS)的安装1.安装VM①在BIOS里修改设置，开启虚拟化设备支持（不同品牌电脑开启的方式会略有不同，百度一下你就知道） ②安装虚拟机软件VM12">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110202588.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110327483.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110400385.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110419250.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110507480.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110518249.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110605829.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110644263.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110656094.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712111057779.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712113153890.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712113220621.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712113255226.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712113331634.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712113717018.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712122825599.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712122852605.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712122937436.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712124611800.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712135911594.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712140047500.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712140206005.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141202767.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141239121.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141503340.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141527999.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141607534.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141656914.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141739997.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712142138672.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712142234760.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712142727069.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712142919601.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712142948344.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712143200108.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712143254749.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712143426655.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712143603769.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712143718019.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712144709882.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712150226971.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712150727915.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712150758747.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712150847934.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712151122202.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712151455780.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712151924913.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712152123775.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712152955109.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712153433473.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712154528644.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712155744943.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712160621407.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712161853753.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712162553893.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712163031130.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712163448217.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712164022741.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712165858391.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712172713292.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713095753762.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100158434.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100220110.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100243471.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100317175.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100331300.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100346290.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100838135.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713101223101.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713101433526.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713101459494.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713101553875.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713101704029.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713102150568.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112531409.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112542939.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112614839.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112628660.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112639691.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112658897.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713134541376.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713140132390.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713140714880.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713143640280.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713150911871.png">
+<meta property="og:image" content="https://www.runoob.com/wp-content/uploads/2015/10/vi-vim-cheat-sheet-sch1.gif">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/vi-vim-cheat-sheet-sch1.gif">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713203004803.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713201235088.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713203858885.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713204742974.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713205838717.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713210826868.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713213823378.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713214229724.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200714093857096.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715102516175.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715112425506.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715171522991.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715173128338.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715194001207.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715200823507.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715211521051.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716092954376.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716093443590.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716094250215.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716094728276.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716095254973.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716111459270.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716155607834.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200717103204382.png">
+<meta property="article:published_time" content="2020-07-12T02:02:27.724Z">
+<meta property="article:modified_time" content="2020-07-17T06:57:36.994Z">
+<meta property="article:author" content="Leo-Fang">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110202588.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Linux入门 | Ale's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Ale's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/12/Linux%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Leo-Fang">
+      <meta itemprop="description" content="记录学习笔记">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ale's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux入门
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-12 10:02:27" itemprop="dateCreated datePublished" datetime="2020-07-12T10:02:27+08:00">2020-07-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-17 14:57:36" itemprop="dateModified" datetime="2020-07-17T14:57:36+08:00">2020-07-17</time>
+              </span>
+
+          
+            <span id="/2020/07/12/Linux%E5%85%A5%E9%97%A8/" class="post-meta-item leancloud_visitors" data-flag-title="Linux入门" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/07/12/Linux%E5%85%A5%E9%97%A8/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/07/12/Linux%E5%85%A5%E9%97%A8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="一、VM和Linux系统-CentOS-的安装"><a href="#一、VM和Linux系统-CentOS-的安装" class="headerlink" title="一、VM和Linux系统(CentOS)的安装"></a>一、VM和Linux系统(CentOS)的安装</h4><h5 id="1-安装VM"><a href="#1-安装VM" class="headerlink" title="1.安装VM"></a>1.安装VM</h5><p>①在BIOS里修改设置，开启虚拟化设备支持（不同品牌电脑开启的方式会略有不同，百度一下你就知道）</p>
+<p>②安装虚拟机软件VM12</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110202588.png" class=""><br>
+
+<a id="more"></a>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110327483.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110400385.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110419250.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110507480.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110518249.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110605829.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110644263.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712110656094.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712111057779.png" class="">
+
+<h5 id="2-安装CentOS"><a href="#2-安装CentOS" class="headerlink" title="2.安装CentOS"></a>2.安装CentOS</h5><p>①创建虚拟机（空间）</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712113153890.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712113220621.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712113255226.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712113331634.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712113717018.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712122825599.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712122852605.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712122937436.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712124611800.png" class=""><br>
+
+<p>②安装CentOS 6.8</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712135911594.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712140047500.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712140206005.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141202767.png" class="">
+
+<p>这里若想返回到Windows，使用CTRL+ALT；想进入CentOS，鼠标单击中间就行了。</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141239121.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141503340.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141527999.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141607534.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141656914.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712141739997.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712142138672.png" class="">
+
+<p>这里需要设置一个复杂一点的密码，可以百度如何生成复杂密码，如下：</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712142234760.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712142727069.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712142919601.png" class="">
+
+<p>创建boot分区</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712142948344.png" class=""><br>
+
+<p>创建swap分区</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712143200108.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712143254749.png" class=""><br>
+
+<p>点击“下一步”→“格式化”→“将修改写入磁盘”</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712143426655.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712143603769.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712143718019.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712144709882.png" class="">
+
+<p>这里只勾选“基本系统”中的“兼容程序库”、“基本”、“调试工具”，“应用程序”中的“互联网浏览器”，“桌面”保持不动，“语言支持”中的“中文支持”，其他的都不要。</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712150226971.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712150727915.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712150758747.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712150847934.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712151122202.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712151455780.png" class="">
+
+<p>这里的Kdump在学习中可以不勾选，在实际的生产环境中需要勾选</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712151924913.png" class="">
+
+<p>这里因为前面没有创建过用户，用户名就写“root”，密码是前面设置的复杂密码</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712152123775.png" class="">
+
+<p>至此，CentOS安装完成。</p>
+<h5 id="3-CentOS的终端使用和联网"><a href="#3-CentOS的终端使用和联网" class="headerlink" title="3.CentOS的终端使用和联网"></a>3.CentOS的终端使用和联网</h5><p>①终端的使用</p>
+<p>鼠标右击桌面，选择“在终端中打开”</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712152955109.png" class="">
+
+<p>菜单栏“编辑”→“侧写首选项”中可以配置终端的界面</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712153433473.png" class="">
+
+<p>②配置网络</p>
+<p>点击右上方的电脑图标，点击“System eth0”，即可成功连接到网络</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712154528644.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712155744943.png" class="">
+
+<h5 id="4-安装VMTools"><a href="#4-安装VMTools" class="headerlink" title="4.安装VMTools"></a>4.安装VMTools</h5><p>①目的</p>
+<p>a.可以在Windows和CentOS系统之间直接粘贴命令</p>
+<p>b.可以设置Windows和CentOS的共享文件夹</p>
+<p>②安装VMTools</p>
+<p>点击菜单栏中的“虚拟机”→“安装 VMware Tools”，将出现的安装包复制到opt文件夹中</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712160621407.png" class="">
+
+<p>使用终端进行解压</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712161853753.png" class="">
+
+<p>解压后，opt文件夹中会出现一个“vmware-tools-distrib”文件夹，执行其中的安装程序“vmware-install.real.pl”进行安装，后面一直按回车键即可</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712162553893.png" class="">
+
+<p>安装完成后重启CentOS，重启可以点击右上角的用户名，选择“退出”，也可以在终端中输入“reboot”指令</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712163031130.png" class="">
+
+<p>重启后就可以实现在Windows和CentOS系统之间之间粘贴文本了</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712163448217.png" class="">
+
+<p>③共享文件夹</p>
+<p>在Windows主机D盘中创建一个名为“myShare“的文件夹，点击CentOS菜单栏中的”虚拟机“→”设置“→”选项“→”共享文件夹“，将myShare文件夹的路径导入</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712164022741.png" class="">
+
+<p>这时在”/mnt/hgfs/“文件夹下就可以看到Windows中的myShare文件夹了，并可以对其中的文件进行读写（【注】CentOS中切换输入法是CTRL+空格）</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712165858391.png" class="">
+
+
+
+<h4 id="二、Linux的目录结构"><a href="#二、Linux的目录结构" class="headerlink" title="二、Linux的目录结构"></a>二、Linux的目录结构</h4><h5 id="1-基本介绍"><a href="#1-基本介绍" class="headerlink" title="1.基本介绍"></a>1.基本介绍</h5><p>Linux的文件系统是采用层级式的树状目录结构，在此结构中的最上层是根目录”/“，然后在此目录下再创建其他的目录。故有人云：<span style='color:red;'>在Linux世界里，一切皆文件。</span></p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200712172713292.png" class="">
+
+<h5 id="2-具体的目录结构"><a href="#2-具体的目录结构" class="headerlink" title="2.具体的目录结构"></a>2.具体的目录结构</h5><p>(1)==/bin==（/usr/bin、/usr/local/bin）</p>
+<p>是Binary的缩写，该目录存放的是最经常使用的命令。</p>
+<p>(2)/sbin（/usr/sbin、/usr/local/sbin）</p>
+<p>s是Super User的意思，该目录存放的是系统管理员使用的系统管理程序。</p>
+<p>(3)==/home==</p>
+<p>存放普通用户的主目录，在Linux中每个用户都有一个自己的目录，一般该目录名是以用户的账号命名的。</p>
+<p>(4)==/root==</p>
+<p>该目录为系统管理员（也称作超级权限者）的用户主目录。</p>
+<p>(5)==/boot==</p>
+<p>存放的是启动Linux时使用的一些核心文件，包括一些连接文件以及镜像文件。</p>
+<p>(6)/proc</p>
+<p>这个目录是一个虚拟的目录，它是系统内存的映射，访问这个目录来获取系统信息。</p>
+<p>(7)/srv</p>
+<p>是Service的缩写，该目录存放的是一些服务启动之后需要提取的数据。</p>
+<p>(8)/sys</p>
+<p>这是Linux2.6内核的一个很大的变化，该目录下安装了2.6内核中新出现的一个文件系统。</p>
+<p>(9)/tmp</p>
+<p>该目录是用来存放一些临时文件的。</p>
+<p>(10)dev</p>
+<p>类似于Windows的设备管理器，把所有的硬件用文件的形式存储。</p>
+<p>(11)==/media==</p>
+<p>Linux系统会自动识别一些设备，如U盘、光驱等，当识别后，Linux会把识别的设备挂载到这个目录下。</p>
+<p>(12)==/mnt==</p>
+<p>系统提供该目录是为了让用户临时挂载别的文件系统，可以将外部的存储挂载在/mnt/上，然后进入该目录就可以查看里面的内容了。</p>
+<p>(13)/opt</p>
+<p>该目录是摆放主机额外安装软件的，如安装Oracle数据库就可放到该目录下，默认为空。</p>
+<p>(14)==/usr/local==</p>
+<p>该目录是另一个给主机安装额外安装软件的目录，一般是通过编译源码方式安装的程序</p>
+<p>(15)==/var==</p>
+<p>该目录中存放着在不断扩充着的东西，习惯将经常被修改的目录放在该目录下，包括各种日志文件。</p>
+<p>(16)/selinux</p>
+<p>是Security-enhanced Linux的缩写，selinux是一种安全子系统，它能控制程序只能访问特定的文件，类似于360。</p>
+<h5 id="3-Linux目录总结"><a href="#3-Linux目录总结" class="headerlink" title="3.Linux目录总结"></a>3.Linux目录总结</h5><p>(1)Linux目录中有且只有一个根目录</p>
+<p>(2)Linux各个目录存放的内容是规划好的，不能乱放文件</p>
+<p>(3)Linux是以文件的形式管理我们的设备，因此Linux系统一切皆为文件</p>
+<p>(4)必须对Linux各个文件目录下存放的内容有一个认识</p>
+<p>(5)Linux目录树</p>
+<h4 id="三、远程登录Linux系统"><a href="#三、远程登录Linux系统" class="headerlink" title="三、远程登录Linux系统"></a>三、远程登录Linux系统</h4><h5 id="1-Xshell5介绍"><a href="#1-Xshell5介绍" class="headerlink" title="1.Xshell5介绍"></a>1.Xshell5介绍</h5><p>Xshell是目前最好的远程登录到Linux操作的软件，速度流畅并且完美解决了中文乱码问题，是目前程序员的首选。</p>
+<p>Xshell是一个强大的安全终端模拟软件，它支持SSH1，SSH2以及Microsoft Windows平台的TELNET协议。</p>
+<p>Xshell可以在Windows界面下用来访问远端不同系统下的服务器，从而比较好的达到远程控制终端的目的。</p>
+<p>【说明】如果希望安装好Xshell5就可以远程访问Linux系统的话，前提是Linux启用了SSHD服务，该服务会监听22号端口。</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713095753762.png" class="">
+
+<h5 id="2-Xshell5的安装、配置和使用"><a href="#2-Xshell5的安装、配置和使用" class="headerlink" title="2.Xshell5的安装、配置和使用"></a>2.Xshell5的安装、配置和使用</h5><img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100158434.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100220110.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100243471.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100317175.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100331300.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100346290.png" class="">
+
+<p>先在CentOS中获取ip地址</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713100838135.png" class="">
+
+<p>打开Xshell5，新建会话，注意协议、主机和端口号的配置</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713101223101.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713101433526.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713101459494.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713101553875.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713101704029.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713102150568.png" class="">
+
+<p>有时候可能会连接失败，可以reconnect一下。这样就远程登录到Linux了，可以使用指令来操作Linux系统。</p>
+<h5 id="3-Xftp5介绍"><a href="#3-Xftp5介绍" class="headerlink" title="3.Xftp5介绍"></a>3.Xftp5介绍</h5><p>Xftp5是一个基于Windows平台的功能强大的SFTP、FTP文件传输软件。使用了Xftp后，Windows用户能安全的在Unix/Linux和Windows PC之间传输文件。</p>
+<h5 id="4-Xftp5的安装、配置和使用"><a href="#4-Xftp5的安装、配置和使用" class="headerlink" title="4.Xftp5的安装、配置和使用"></a>4.Xftp5的安装、配置和使用</h5><img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112531409.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112542939.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112614839.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112628660.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112639691.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713112658897.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713134541376.png" class=""><br>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713140132390.png" class="">
+
+<p>会话连接后如下图所示，窗口左边是Windows，右边是Linux，若Linux中字体是乱码的，在菜单栏中点击“属性”按钮，在“选项”中勾选“使用UTF-8编码”即可</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713140714880.png" class="">
+
+<p>现在就可以在Windows和Linux之间传输文件了，右键点击想要传输的文件，点击“传输”即可。</p>
+<h4 id="四、vi和vim编辑器"><a href="#四、vi和vim编辑器" class="headerlink" title="四、vi和vim编辑器"></a>四、vi和vim编辑器</h4><h5 id="1-vi和vim的基本介绍"><a href="#1-vi和vim的基本介绍" class="headerlink" title="1.vi和vim的基本介绍"></a>1.vi和vim的基本介绍</h5><p>vi是所有Unix和Linux系统下标准的编辑器，类似于Windows系统下的notepad（记事本）编辑器，由于在Unix和linux系统下的任何版本，vi编辑器是完全相同的，因此可以在其他任何介绍vi的地方都能进一步了解它，vi也是Linux中最基本的文本编辑器，学会它后，可以linux的世界畅通无阻，尤其是在终端中。所有的Linux系统都会内建vi文本编辑器。</p>
+<p>vim具有程序编辑的能力，可以看作是vi的增强版本，可以主动的以字体颜色辨别语法的正确性，方便程序设计。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。</p>
+<h5 id="2-vi和vim的三种常见模式"><a href="#2-vi和vim的三种常见模式" class="headerlink" title="2.vi和vim的三种常见模式"></a>2.vi和vim的三种常见模式</h5><p>(1)正常模式</p>
+<p>在该模式下可以使用快捷键。以vim打开一个档案就直接进入一般模式了（默认的模式）。在这个模式中可以使用『上下左右』按键来移动光标，使用『删除字符』或『删除整行』来处理档案内容，也可以使用『复制、粘贴』来处理你的文件数据。</p>
+<p>(2)插入模式/编辑模式</p>
+<p>在该模式下可以输入内容。按下 i，I，o，O，a，A，r，R等任何一个字母之后才会进入编辑模式，一般来说按 <strong>i</strong>（insert）即可。</p>
+<p>(3)命令行模式</p>
+<p>在该模式中可以提供相关指令，完成读取、存盘、替换、离开vim、显示行号等动作。</p>
+<ul>
+<li><p>演示：使用vim开发一个Hello.java程序</p>
+<p>在Xshell5中输入“vim Hello.java”并回车，进入正常模式，按“i”键进入插入模式进行编辑，编辑完成后按“Esc”键退出插入模式，并在命令行下输入相关指令进行其他动作。</p>
+</li>
+</ul>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713143640280.png" class="">
+
+<h5 id="3-vi和vim模式的相互切换"><a href="#3-vi和vim模式的相互切换" class="headerlink" title="3.vi和vim模式的相互切换"></a>3.vi和vim模式的相互切换</h5><img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713150911871.png" class="">
+
+<h5 id="4-快捷键的使用"><a href="#4-快捷键的使用" class="headerlink" title="4.快捷键的使用"></a>4.快捷键的使用</h5><p>①yy：拷贝当前行    [正常模式下]</p>
+<p>​    5yy：拷贝当前行向下的5行</p>
+<p>​    p：粘贴</p>
+<p>②dd：删除当前行    [正常模式下]</p>
+<p>​    5dd：删除当前行向下的5行</p>
+<p>③/+关键字+Enter：查找关键字    [命令行模式下]</p>
+<p>​    n：向下查询</p>
+<p>​    N：向上查询</p>
+<p>④:set nu+Enter：显示文件的行号    [命令行模式下]</p>
+<p>​    :set nonu+Enter：取消文件的行号</p>
+<p>⑤G：回到文档的末行    [正常模式下]</p>
+<p>​    gg：回到文档的首行</p>
+<p>⑥u：撤销动作    [正常模式下]</p>
+<p>⑦:set nu→数字n→shift+g：将光标移动到第n行</p>
+<h5 id="5-vi-vim键盘图"><a href="#5-vi-vim键盘图" class="headerlink" title="5.vi/vim键盘图"></a>5.vi/vim键盘图</h5><p><img src="https://www.runoob.com/wp-content/uploads/2015/10/vi-vim-cheat-sheet-sch1.gif" alt="img"></p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/vi-vim-cheat-sheet-sch1.gif" class="">
+
+
+
+<h4 id="五、开机、重启和用户登录、注销"><a href="#五、开机、重启和用户登录、注销" class="headerlink" title="五、开机、重启和用户登录、注销"></a>五、开机、重启和用户登录、注销</h4><h5 id="1-关机-amp-重启命令"><a href="#1-关机-amp-重启命令" class="headerlink" title="1.关机&amp;重启命令"></a>1.关机&amp;重启命令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now：立即关机</span><br><span class="line">shutdown -h 1：1分钟后关机</span><br><span class="line">shutdown -r now：立即重启</span><br><span class="line"></span><br><span class="line">halt：关机</span><br><span class="line"></span><br><span class="line">reboot：重启系统</span><br><span class="line"></span><br><span class="line">syn：把内存的数据同步到磁盘</span><br></pre></td></tr></table></figure>
+
+<p>【注意细节】当我们关机或重启时，都应该先执行一下sync指令，把内存中的数据写入磁盘，防止数据丢失。</p>
+<h5 id="2-用户登录和注销"><a href="#2-用户登录和注销" class="headerlink" title="2.用户登录和注销"></a>2.用户登录和注销</h5><p>①登录时尽量少用root账号登录，因为它是系统管理员，拥有最大的权限，避免操作失误造成无法挽回的损失。可以利用普通用户登录，登录后再用“su-用户名”命令来切换成系统管理员身份</p>
+<p>②在提示符下输入“logout”命令即可注销用户</p>
+<p>【使用细节】logout注销指令在图形运行级别无效，在运行级别3下有效。</p>
+<h4 id="六、用户管理"><a href="#六、用户管理" class="headerlink" title="六、用户管理"></a>六、用户管理</h4><h5 id="1-基本介绍-1"><a href="#1-基本介绍-1" class="headerlink" title="1.基本介绍"></a>1.基本介绍</h5><p>①Linux系统是一个多用户多任务的操作系统，任何一个要使用系统资源的用户，都必须首先向系统管理员申请一个账号，然后以这个账号的身份进入系统。</p>
+<p>②Linux的用户至少要属于一个组。</p>
+<h5 id="2-添加用户"><a href="#2-添加用户" class="headerlink" title="2.添加用户"></a>2.添加用户</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd [选项] 用户名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>细节说明</p>
+<p>当创建用户成功后，会自动创建和用户同名的家目录</p>
+<p>也可以通过<code>useradd -d 指定目录 新的用户名</code>给新创建的用户指定家目录</p>
+</li>
+<li><p>示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713203004803.png" class="">
+
+</li>
+</ul>
+<h5 id="3-给用户指定或者修改密码"><a href="#3-给用户指定或者修改密码" class="headerlink" title="3.给用户指定或者修改密码"></a>3.给用户指定或者修改密码</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwd 用户名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>说明</p>
+<p>①在工作中密码必须复杂点</p>
+<p>②使用passwd指定密码时，界面上是看不到密码的</p>
+</li>
+<li><p>示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713201235088.png" class="">
+
+</li>
+</ul>
+<h5 id="4-删除用户"><a href="#4-删除用户" class="headerlink" title="4.删除用户"></a>4.删除用户</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">userdel [可选项] 用户名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例</p>
+</li>
+</ul>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713203858885.png" class="">
+
+<ul>
+<li><p>说明</p>
+<p>在删除用户时一般不会删除家目录</p>
+</li>
+</ul>
+<h5 id="5-查询用户信息"><a href="#5-查询用户信息" class="headerlink" title="5.查询用户信息"></a>5.查询用户信息</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id 用户名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713204742974.png" class="">
+</li>
+<li><p>说明</p>
+<p>当用户不存在时则返回“无此用户”</p>
+</li>
+</ul>
+<h5 id="6-切换用户"><a href="#6-切换用户" class="headerlink" title="6.切换用户"></a>6.切换用户</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - 用户名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713205838717.png" class="">
+</li>
+<li><p>说明</p>
+<p>①从高权限用户切换到低权限用户不需要输入密码，反之需要</p>
+<p>②当需要返回到原来的用户时，使用<code>exit</code>指令</p>
+</li>
+</ul>
+<h5 id="7-查看当前用户-登录用户"><a href="#7-查看当前用户-登录用户" class="headerlink" title="7.查看当前用户/登录用户"></a>7.查看当前用户/登录用户</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami&#x2F;who am i</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="8-用户组"><a href="#8-用户组" class="headerlink" title="8.用户组"></a>8.用户组</h5><ul>
+<li><p>介绍</p>
+<p>类似于角色，系统可以对有共性的多个用户进行统一的管理。</p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">增加组</span><br><span class="line">groupadd 组名</span><br><span class="line"></span><br><span class="line">删除组</span><br><span class="line">groupdel 组名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713210826868.png" class="">
+
+</li>
+</ul>
+<h5 id="9-增加用户时直接加上组"><a href="#9-增加用户时直接加上组" class="headerlink" title="9.增加用户时直接加上组"></a>9.增加用户时直接加上组</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">useradd -g 用户组 用户名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713213823378.png" class="">
+
+</li>
+</ul>
+<h5 id="10-修改用户的组"><a href="#10-修改用户的组" class="headerlink" title="10.修改用户的组"></a>10.修改用户的组</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -g 新用户组 用户名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200713214229724.png" class="">
+
+</li>
+</ul>
+<h5 id="11-用户和组的相关文件"><a href="#11-用户和组的相关文件" class="headerlink" title="11.用户和组的相关文件"></a>11.用户和组的相关文件</h5><p>(1)/etc/passwd 文件</p>
+<p>​    用户（user）的配置文件，记录用户的各种信息</p>
+<p>​    每行的含义：用户名:口令:用户标识号:组标识号:注释性描述:主目录:登录 Shell</p>
+<p>(2)/etc/shadow 文件</p>
+<p>​    口令的配置文件</p>
+<p>​    每行的含义：登录名:加密口令:最后一次修改时间:最小时间间隔:最大时间间隔:警告时间:不活动时间:失效时间:标志</p>
+<p>(3)/etc/group 文件</p>
+<p>​    组（group）的配置文件，记录Linux包含的组的信息</p>
+<p>​    每行含义：组名:口令:组标识号:组内用户列表</p>
+<h4 id="七、实用指令"><a href="#七、实用指令" class="headerlink" title="七、实用指令"></a>七、实用指令</h4><h5 id="1-指定运行级别"><a href="#1-指定运行级别" class="headerlink" title="1.指定运行级别"></a>1.指定运行级别</h5><p>0：关机</p>
+<p>1：单用户（找回丢失密码）</p>
+<p>2：多用户状态没有网络服务</p>
+<p>==3：多用户状态有网络服务==</p>
+<p>4：系统未使用保留给用户</p>
+<p>==5：图形界面==</p>
+<p>6：系统重启</p>
+<p>【注】常用运行级别是3和5，要修改默认的运行级别可修改文件“/etc/inittab”的“id:5:initdefault:”这一行中的数字</p>
+<h5 id="2-切换到指定运行级别的指令"><a href="#2-切换到指定运行级别的指令" class="headerlink" title="2.切换到指定运行级别的指令"></a>2.切换到指定运行级别的指令</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">init [0&#x2F;1&#x2F;2&#x2F;3&#x2F;5&#x2F;6]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200714093857096.png" class="">
+
+<p>【面试题】如何找回root密码</p>
+<p>开机→在引导时按下Enter键→看到界面输入e→看到新界面，选中第二行（编辑内核）再输入e→在这行最后输入1，再按下Enter键→再输入b进入到单用户模式</p>
+<p>这时我们就进入到了单用户模式，使用passwd指令来修改root密码即可</p>
+<p>【说明】</p>
+<p>①root密码是不可以通过远程登录来修改的，只能在装了该系统的电脑或服务器上改动，所以是比较安全的</p>
+<p>②如何别人整蛊你把默认的运行级别设置成0或6，也可以通过进入单用户模式来修改，将默认运行级别改回来</p>
+</li>
+</ul>
+<h5 id="3-帮助指令"><a href="#3-帮助指令" class="headerlink" title="3.帮助指令"></a>3.帮助指令</h5><p>(1)man指令</p>
+<ul>
+<li><p>功能：获取指定命令的帮助手册信息</p>
+</li>
+<li><p>语法</p>
+<p><code>man [命令或配置文件]</code></p>
+</li>
+</ul>
+<p>(2)help指令</p>
+<ul>
+<li><p>功能：获取shell内置命令的帮助信息</p>
+</li>
+<li><p>语法</p>
+<p><code>help shell内置命令</code></p>
+</li>
+</ul>
+<p>(3)百度</p>
+<p>针对英语功底不好，看不懂英文文档的学习者</p>
+<h5 id="4-文件目录类"><a href="#4-文件目录类" class="headerlink" title="4.文件目录类"></a>4.文件目录类</h5><p>(1)pwd指令</p>
+<ul>
+<li>功能：显示当前工作目录的绝对路径</li>
+</ul>
+<p>(2)ls指令</p>
+<ul>
+<li><p>语法</p>
+<p><code>ls [选项] [目录或文件]</code></p>
+</li>
+<li><p>常用选项</p>
+<p>-a：显示当前目录所有的文件和目录，包括隐藏的</p>
+<p>-l：以列表的方式显示信息</p>
+</li>
+</ul>
+<p>(3)cd指令</p>
+<ul>
+<li><p>功能：切换到指定目录</p>
+</li>
+<li><p>语法</p>
+<p><code>cd [参数]</code></p>
+</li>
+<li><p>常用参数</p>
+<p>绝对路径：从根目录开始定位</p>
+<p>相对路径：从当前工作目录开始定位到需要的目录去</p>
+<p><code>cd ~</code>    回到自己的家目录</p>
+<p><code>cd ..</code>    回到当前目录的上一级目录</p>
+</li>
+</ul>
+<p>(4)mkdir指令</p>
+<ul>
+<li><p>功能：创建目录</p>
+</li>
+<li><p>语法</p>
+<p><code>mkdir [选项] 要创建的目录</code></p>
+</li>
+<li><p>常用选项</p>
+<p>-p：创建多级目录</p>
+</li>
+</ul>
+<p>(5)rmdir指令</p>
+<ul>
+<li><p>功能：删除目录</p>
+</li>
+<li><p>语法</p>
+<p><code>rmdir [选项] 要删除的目录</code></p>
+</li>
+<li><p>使用细节</p>
+<p>rmdir删除的是空目录，如果目录下有内容时是无法删除的</p>
+<p>如果需要删除非空目录，需要使用<code>rm -rf 要删除的目录</code></p>
+</li>
+</ul>
+<p>(6)touch指令</p>
+<ul>
+<li><p>功能：创建空文件</p>
+</li>
+<li><p>语法</p>
+<p><code>touch 文件名称</code></p>
+<p><code>touch 文件名称1 文件名称2 文件名称3</code></p>
+</li>
+</ul>
+<p>(7)cp指令</p>
+<ul>
+<li><p>功能：拷贝文件到指定目录</p>
+</li>
+<li><p>语法</p>
+<p><code>cp [选项] 源文件 指定目录</code></p>
+</li>
+<li><p>常用选项</p>
+<p>-r：递归复制整个文件夹</p>
+</li>
+<li><p>使用细节</p>
+<p>当拷贝文件夹到指定目录需要覆盖文件时，可使用<code>\cp -r 文件夹 指定目录</code>来解决多次提示是否覆盖的情况</p>
+</li>
+<li><p>小技巧：<span style='color:red;'>可以通过上下箭头按键调出原来使用过的指令</span></p>
+</li>
+</ul>
+<p>(8)rm指令</p>
+<ul>
+<li><p>功能：删除文件或目录</p>
+</li>
+<li><p>语法</p>
+<p><code>rm [选项] 要删除的文件或目录</code></p>
+</li>
+<li><p>常用选项</p>
+<p>-r：递归删除整个文件夹</p>
+<p>-f：强制删除不提示</p>
+</li>
+</ul>
+<p>(9)mv指令</p>
+<ul>
+<li><p>功能：移动文件与目录，或者重命名</p>
+</li>
+<li><p>语法</p>
+<p><code>mv 文件 指定目录</code>    移动文件</p>
+<p><code>mv 旧文件名 新文件名</code>    重命名</p>
+</li>
+</ul>
+<p>(10)cat指令</p>
+<ul>
+<li><p>功能：查看文件内容，以只读的方式打开</p>
+</li>
+<li><p>语法</p>
+<p><code>cat [选项] 要查看的文件</code></p>
+</li>
+<li><p>常用选项</p>
+<p>-n：显示行号</p>
+</li>
+<li><p>使用细节</p>
+<p>cat只能浏览文件而不能修改文件，为了浏览方便一般会带上管道命令|more</p>
+<p><code>cat 文件名 | more</code>    分页浏览，按空格键浏览下一页</p>
+</li>
+</ul>
+<p>(11)more指令</p>
+<ul>
+<li><p>功能：more指令是一个基于vi编辑器的文本过滤器，以全屏的方式按页显示文本文件的内容。more指令中内置了若干快捷键</p>
+</li>
+<li><p>语法</p>
+<p><code>more 要查看的文件</code></p>
+</li>
+<li><p>快捷键</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Space</td>
+<td>向下翻一页</td>
+</tr>
+<tr>
+<td align="center">Enter</td>
+<td>向下翻一行</td>
+</tr>
+<tr>
+<td align="center">q</td>
+<td>立刻离开more，不再显示该文件内容</td>
+</tr>
+<tr>
+<td align="center">CTRL+F</td>
+<td>向下滚动一屏</td>
+</tr>
+<tr>
+<td align="center">CTRL+B</td>
+<td>返回上一屏</td>
+</tr>
+<tr>
+<td align="center">=</td>
+<td>输出当前行的行号</td>
+</tr>
+<tr>
+<td align="center">:f</td>
+<td>输出文件名和当前行的行号</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>(12)less指令</p>
+<ul>
+<li><p>功能：less指令用来分屏查看文件内容，其功能与more指令类似，但比more更强大，支持各种显示终端。less指令在显示文件内容时，并不是一次将整个文件加载后才显示，而是根据显示需要加载内容，对于==显示大型文件==具有较高的效率。</p>
+</li>
+<li><p>语法</p>
+<p><code>less 要查看的文件</code></p>
+</li>
+<li><p>快捷键</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th>功能说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Space</td>
+<td>向下翻动一页</td>
+</tr>
+<tr>
+<td align="center">pagedown</td>
+<td>向下翻动一页</td>
+</tr>
+<tr>
+<td align="center">pageup</td>
+<td>向上翻动一页</td>
+</tr>
+<tr>
+<td align="center">/字符串</td>
+<td>向下搜寻「字符串」（n：向下查找；N：向上查找）</td>
+</tr>
+<tr>
+<td align="center">？字符串</td>
+<td>向上搜寻「字符串」（n：向上查找；N：向下查找）</td>
+</tr>
+<tr>
+<td align="center">q</td>
+<td>离开less</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<p>(13)&gt;指令和&gt;&gt;指令</p>
+<ul>
+<li><p>功能</p>
+<p>＞：输出重定向，会将原来的文件内容覆盖</p>
+<p>＞＞：追加，不会覆盖原来的文件内容，而是追加到文件的尾部</p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#将显示的内容写入到文件中（如果文件存在就覆盖，文件不存在就创建该文件）</span><br><span class="line">ls -l &gt; 文件</span><br><span class="line"></span><br><span class="line">#将显示的内容追加到文件的末尾</span><br><span class="line">ls -l &gt;&gt; 文件</span><br><span class="line"></span><br><span class="line">#将文件1的内容写入到文件2中（如果文件存在就覆盖，文件不存在就创建该文件）</span><br><span class="line">cat 文件1 &gt; 文件2</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>(14)echo指令</p>
+<ul>
+<li><p>功能：输出内容到控制台</p>
+</li>
+<li><p>语法</p>
+<p><code>echo [选项] [输出内容]</code></p>
+</li>
+</ul>
+<p>(15)head指令</p>
+<ul>
+<li><p>功能：显示文件的开头部分内容，默认情况下head指令显示文件的前10行内容</p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">head 文件</span><br><span class="line"></span><br><span class="line">#查看文件头5行内容，5也可以是其他数字</span><br><span class="line">head -n 5 文件</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>(16)tail指令</p>
+<ul>
+<li><p>功能：输出文件中尾部的内容，默认情况下tail指令显示文件的后10行内容</p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tail 文件</span><br><span class="line"></span><br><span class="line">#查看文件后5行内容，5也可以是其他数字</span><br><span class="line">tail -n 5 文件</span><br><span class="line"></span><br><span class="line">#实时追踪该文档的所有更新（工作中经常使用）</span><br><span class="line">tail -f 文件</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>(17)ln指令</p>
+<ul>
+<li><p>功能：软链接，也叫符号链接，类似于Windows里的快捷方式，主要存放了链接其他文件的路径</p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ln -s 链接源 链接名</span><br><span class="line"></span><br><span class="line">#删除软链接</span><br><span class="line">rm -rf 链接名</span><br><span class="line">（在删除软链接文件时，不要带&#x2F;，否则会提示“设备或资源忙”）</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>细节说明：当我们使用pwd指令查看目录时，看到的仍然是软链接所在的目录</p>
+</li>
+</ul>
+<p>(18)history指令</p>
+<ul>
+<li><p>功能：查看已经执行过的历史指令，也可以执行历史指令</p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#显示所有的历史指令</span><br><span class="line">history</span><br><span class="line"></span><br><span class="line">#显示最近使用过的10个指令</span><br><span class="line">history 10</span><br><span class="line"></span><br><span class="line">#执行历史指令编号为5的指令</span><br><span class="line">!5</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="5-时间日期类"><a href="#5-时间日期类" class="headerlink" title="5.时间日期类"></a>5.时间日期类</h5><p>(1)date指令——显示当前日期</p>
+<ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#显示当前日期</span><br><span class="line">date</span><br><span class="line"></span><br><span class="line">#显示当前年份&#x2F;月份&#x2F;天</span><br><span class="line">date &quot;+%Y&#x2F;%m&#x2F;%d&quot;</span><br><span class="line"></span><br><span class="line">#显示当前时间的年月日时分秒</span><br><span class="line">date &quot;+%Y-%m-%d %H:%M:%S&quot;</span><br><span class="line">【注】“+”不能少，年月日时分秒的分隔符可以用任意字符代替</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>(2)date指令——设置日期</p>
+<ul>
+<li><p>语法</p>
+<p><code>date -s 字符串时间</code></p>
+</li>
+</ul>
+<p>(3)cal指令</p>
+<ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#显示本月日历</span><br><span class="line">cal</span><br><span class="line"></span><br><span class="line">#显示全年日历</span><br><span class="line">cal 2020</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="6-搜索查找类"><a href="#6-搜索查找类" class="headerlink" title="6.搜索查找类"></a>6.搜索查找类</h5><p>(1)find指令</p>
+<ul>
+<li><p>功能：从指定目录向下递归遍历其各个子目录，将满足条件的文件或目录显示在终端</p>
+</li>
+<li><p>语法</p>
+<p><code>find [搜索范围] [选项]</code></p>
+</li>
+<li><p>选项说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-name&lt;查询方式&gt;</td>
+<td>按照指定的文件名查找文件</td>
+</tr>
+<tr>
+<td align="center">-user&lt;用户名&gt;</td>
+<td>查找属于指定用户名的所有文件</td>
+</tr>
+<tr>
+<td align="center">-size&lt;文件大小&gt;</td>
+<td>按照指定的文件大小查找文件</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#根据名称查找&#x2F;home目录下的hello.txt文件</span><br><span class="line">find &#x2F;home -name hello.txt</span><br><span class="line"></span><br><span class="line">#按拥有者查找&#x2F;opt目录下用户名称为nobody的文件</span><br><span class="line">find &#x2F;opt -user nobody</span><br><span class="line"></span><br><span class="line">#查找整个Linux系统下大于20M的文件（+n：大于n	-n：小于n	n：等于n）</span><br><span class="line">find &#x2F; -size +20M</span><br><span class="line"></span><br><span class="line">#查找&#x2F;目录下所有的.txt文件</span><br><span class="line">find &#x2F; -name *.txt</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>(2)locate指令</p>
+<ul>
+<li><p>功能：locate指令可以快速定位文件路径。locate指令利用事先建立的系统中所有文件名称及路径的locate数据库实现快速定位指定的文件。locate指令无需遍历整个文件系统，查询速度较快。为了保证查询结果的准确度，管理员必须定期更新locate时刻。</p>
+</li>
+<li><p>语法</p>
+<p><code>locate 搜索文件</code></p>
+</li>
+<li><p>特别说明：由于locate指令基于数据库进行查询，所以<span style='color:red;'>第一次运行前，必须使用updatedb指令创建locate数据库</span></p>
+</li>
+</ul>
+<p>(3)grep指令和管道符号|</p>
+<ul>
+<li><p>功能：grep，过滤查找；“|”，管道符，表示将前一个命令的处理结果输出传递给后面的命令处理。</p>
+</li>
+<li><p>语法</p>
+<p><code>grep [选项] 查找内容 源文件</code></p>
+</li>
+<li><p>常用选项</p>
+<p>-n：显示匹配行及行号</p>
+<p>-i：忽略字母大小写</p>
+</li>
+<li><p>示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#在hello.txt文件中查找“yes”所在行，并显示行号，不区分大小写</span><br><span class="line">cat hello.txt | grep -ni yes</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="7-压缩和解压类"><a href="#7-压缩和解压类" class="headerlink" title="7.压缩和解压类"></a>7.压缩和解压类</h5><p>(1)gzip/gunzip指令</p>
+<ul>
+<li><p>功能：gzip用于压缩文件，gunzip用于解压文件</p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#压缩文件（只能将文件压缩为*.gz格式）</span><br><span class="line">gzip 文件</span><br><span class="line"></span><br><span class="line">#解压文件</span><br><span class="line">gunzip 文件.gz</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>细节说明：使用gzip对文件进行压缩后，不会保留原来的文件</p>
+</li>
+</ul>
+<p>(2)zip/unzip指令</p>
+<ul>
+<li><p>功能：zip用于压缩文件，unzip用于解压文件，在项目打包发布中很有用</p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#压缩文件或目录</span><br><span class="line">zip [选项] 文件名</span><br><span class="line"></span><br><span class="line">#解压文件</span><br><span class="line">unzip [选项] 文件.zip</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>zip常用选项</p>
+<p>-r：递归压缩，即压缩目录</p>
+</li>
+<li><p>unzip常用选项</p>
+<p>-d &lt;目录&gt;：指定解压后文件的存放目录</p>
+</li>
+</ul>
+<p>(3)tar指令</p>
+<ul>
+<li><p>功能：打包指令，打包后的文件格式是.tar.gz，既能压缩也能解压</p>
+</li>
+<li><p>语法</p>
+<p><code>tar [选项]  XXX.tar.gz 打包的内容</code></p>
+</li>
+<li><p>选项说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-c</td>
+<td>产生.tar打包文件</td>
+</tr>
+<tr>
+<td align="center">-v</td>
+<td>显示详细信息</td>
+</tr>
+<tr>
+<td align="center">-f</td>
+<td>指定压缩后的文件名</td>
+</tr>
+<tr>
+<td align="center">-z</td>
+<td>打包同时压缩</td>
+</tr>
+<tr>
+<td align="center">-x</td>
+<td>解包.tar文件</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#将&#x2F;home&#x2F;a.txt和&#x2F;home&#x2F;b.txt压缩成a.tar.gz</span><br><span class="line">tar -zcvf a.tar.gz a.txt b.txt</span><br><span class="line"></span><br><span class="line">#将&#x2F;home的文件夹压缩成myhome.tar.gz</span><br><span class="line">tar -zcvf myhome.tar.gz &#x2F;home&#x2F;</span><br><span class="line"></span><br><span class="line">#将a.tar.gz解压到当前目录</span><br><span class="line">tar -zxvf a.tar.gz</span><br><span class="line"></span><br><span class="line">#将myhome.tar.gz解压到&#x2F;opt&#x2F;目录下（-C：指定目录）</span><br><span class="line">tar -zxvf myhome.tar.gz -C &#x2F;opt&#x2F;</span><br><span class="line">（指定解压到的目录需事先存在才能成功，否则会报错）</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="八、组管理和权限管理"><a href="#八、组管理和权限管理" class="headerlink" title="八、组管理和权限管理"></a>八、组管理和权限管理</h4><h5 id="1-Linux组的基本介绍"><a href="#1-Linux组的基本介绍" class="headerlink" title="1.Linux组的基本介绍"></a>1.Linux组的基本介绍</h5><p>在Linux中每个用户必须属于一个组，不能独立于组外。在Linux中每个文件都有所有者、所在组、其他组的概念。</p>
+<h5 id="2-文件-目录所有者"><a href="#2-文件-目录所有者" class="headerlink" title="2.文件/目录所有者"></a>2.文件/目录所有者</h5><p>一般为文件的创建者，谁创建了该文件，就自然成为了该文件的所有者。</p>
+<p>(1)查看文件的所有者</p>
+<ul>
+<li><p>语法</p>
+<p><code>ls -ahl</code></p>
+</li>
+<li><p>示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715102516175.png" class="">
+
+</li>
+</ul>
+<p>(2)修改文件所有者</p>
+<ul>
+<li><p>语法</p>
+<p><code>chown 新用户名 文件名</code></p>
+</li>
+</ul>
+<h5 id="3-组的创建"><a href="#3-组的创建" class="headerlink" title="3.组的创建"></a>3.组的创建</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#创建一个组</span><br><span class="line">groupadd 组名</span><br><span class="line"></span><br><span class="line">#创建一个用户并放到组中</span><br><span class="line">useradd -g 组名 用户名</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="4-文件-目录所在组"><a href="#4-文件-目录所在组" class="headerlink" title="4.文件/目录所在组"></a>4.文件/目录所在组</h5><p>当某个用户创建了一个文件后，默认这个文件的所在组就是该用户的所在组。</p>
+<p>(1)查看文件/目录所在组</p>
+<ul>
+<li><p>语法</p>
+<p><code>ls -ahl</code></p>
+</li>
+</ul>
+<p>(2)修改文件所在组</p>
+<ul>
+<li><p>语法</p>
+<p><code>chgrp 组名 文件名</code></p>
+</li>
+</ul>
+<h5 id="5-其他组"><a href="#5-其他组" class="headerlink" title="5.其他组"></a>5.其他组</h5><p>除文件的所有者和所在组的用户外，系统的其他用户都是文件的其他组。</p>
+<h5 id="6-改变用户所在组"><a href="#6-改变用户所在组" class="headerlink" title="6.改变用户所在组"></a>6.改变用户所在组</h5><p>在添加用户时，可以指定将该用户添加到哪个组中，同样的用root的管理权限可以改变某个用户所在的组。</p>
+<ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">usermod -g 组名 用户名</span><br><span class="line"></span><br><span class="line">#改变该用户登录的初始目录</span><br><span class="line">usermod -d 目录名 用户名</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="7-权限的基本介绍"><a href="#7-权限的基本介绍" class="headerlink" title="7.权限的基本介绍"></a>7.权限的基本介绍</h5><p><code>ls -l</code>中显示的内容形式如下：</p>
+<p><code>-rw-r--r--. 1 tom  police    0 7月  15 10:14 ok.txt</code></p>
+<ul>
+<li><p>0-9位说明：</p>
+<p>①第0位确定文件类型（d，-，l，c，b）</p>
+<p>②第1-3位确定所有者拥有该文件的权限——User</p>
+<p>③第4-6位确定所在组拥有该文件的权限——Group</p>
+<p>④第7-9位确定其他用户拥有该文件的权限——Other</p>
+</li>
+<li><p>示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715112425506.png" class="">
+
+</li>
+</ul>
+<h5 id="8-rwx-权限详解"><a href="#8-rwx-权限详解" class="headerlink" title="8.[rwx]权限详解"></a>8.[rwx]权限详解</h5><p>(1)作用到文件</p>
+<p>①[r]代表可读(read)：可以读取，查看</p>
+<p>②[w]代表可写(write)：可以修改，但是不代表可以删除该文件，删除一个文件的前提是对该文件所在的目录有写权限才能删除该文件</p>
+<p>③[x]代表可执行(execute)：可以被执行</p>
+<p>(2)作用到目录</p>
+<p>①[r]代表可读(read)：可以读取，ls查看目录内容</p>
+<p>②[w]代表可写(write)：可以修改，目录内创建+删除+重命名目录</p>
+<p>③[x]代表可执行(execute)：可以进入该目录</p>
+<h5 id="9-权限修改"><a href="#9-权限修改" class="headerlink" title="9.权限修改"></a>9.权限修改</h5><p>(1)通过+、-、=变更权限</p>
+<p>u：所有者    g：所在组    o：其他人    a：所有人（u、g、o的总和）</p>
+<ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;x 文件目录名</span><br><span class="line">chmod o+w 文件目录名</span><br><span class="line">chmod a-x 文件目录名</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>(2)通过数字变更权限</p>
+<p>r=4    w=2    x=1    r+w+x=7    r+w=6    r+x=5</p>
+<ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod u&#x3D;rwx,g&#x3D;rx,o&#x3D;x 文件目录名</span><br><span class="line">&lt;&#x3D;&gt;	chmod 751 文件目录名</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="10-修改文件所有者"><a href="#10-修改文件所有者" class="headerlink" title="10.修改文件所有者"></a>10.修改文件所有者</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#改变文件的所有者</span><br><span class="line">chown 新所有者 文件名</span><br><span class="line"></span><br><span class="line">#改变文件的所有者和所在组</span><br><span class="line">chown 新所有者:新所在组 文件名</span><br><span class="line"></span><br><span class="line">-R：如果是目录，则使其下所有子文件或目录递归生效</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="11-修改文件所在组"><a href="#11-修改文件所在组" class="headerlink" title="11.修改文件所在组"></a>11.修改文件所在组</h5><ul>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#改变文件所在组</span><br><span class="line">chgrp 新所在组 文件名</span><br><span class="line"></span><br><span class="line">#改变目录下所有文件的所在组</span><br><span class="line">chgrp -R 新所在组 目录名</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="九、crond任务调度"><a href="#九、crond任务调度" class="headerlink" title="九、crond任务调度"></a>九、crond任务调度</h4><h5 id="1-概述"><a href="#1-概述" class="headerlink" title="1.概述"></a>1.概述</h5><p>任务调度：指系统在某个时间执行特定的命令或程序</p>
+<p>任务调度分类：①系统工作：有些重要的工作必须周而复始地执行，如病毒扫描等；②个别用户工作：个别用户可能希望执行某些程序，如对MySQL数据库备份。</p>
+<h5 id="2-语法"><a href="#2-语法" class="headerlink" title="2.语法"></a>2.语法</h5><p><code>crontab [选项]</code></p>
+<ul>
+<li>常用选项</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-e</td>
+<td>编辑crontab定时任务</td>
+</tr>
+<tr>
+<td align="center">-l</td>
+<td>查询crontab任务</td>
+</tr>
+<tr>
+<td align="center">-f</td>
+<td>删除当前用户所有的crontab任务</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">命令行输入：crontab -e</span><br><span class="line">再输入：*&#x2F;1 * * * * ls -l &#x2F;etc &gt;&gt; &#x2F;tmp&#x2F;to.txt</span><br><span class="line">保存退出后程序在每一分钟都会自动调用一次“ls -l &#x2F;etc &gt;&gt; &#x2F;tmp&#x2F;to.txt”</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="3-参数细节说明"><a href="#3-参数细节说明" class="headerlink" title="3.参数细节说明"></a>3.参数细节说明</h5><p>①5个占位符的说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">项目</th>
+<th align="center">含义</th>
+<th align="center">范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">第一个“*”</td>
+<td align="center">一小时当中的第几分钟</td>
+<td align="center">0-59</td>
+</tr>
+<tr>
+<td align="center">第二个“*”</td>
+<td align="center">一天当中的第几小时</td>
+<td align="center">0-23</td>
+</tr>
+<tr>
+<td align="center">第三个“*”</td>
+<td align="center">一个月当中的第几天</td>
+<td align="center">1-31</td>
+</tr>
+<tr>
+<td align="center">第四个“*”</td>
+<td align="center">一年当中的第几个月</td>
+<td align="center">1-12</td>
+</tr>
+<tr>
+<td align="center">第五个“*”</td>
+<td align="center">一周当中的星期几</td>
+<td align="center">0-7（0和7都代表星期日）</td>
+</tr>
+</tbody></table>
+<p>②特殊符号的说明</p>
+<table>
+<thead>
+<tr>
+<th align="center">特殊符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">*</td>
+<td>代表任何时间。如第一个“*”代表一小时中每分钟都执行一次的意思</td>
+</tr>
+<tr>
+<td align="center">,</td>
+<td>代表不连续的时间。如“0 8,12,16 * * *”命令代表在每天的8时0分，12时0分，16时0分都执行一次命令</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td>代表连续的时间范围。如“0 5 * * 1-6”命令代表在周一到周六的凌晨5时0分执行命令</td>
+</tr>
+<tr>
+<td align="center">*/n</td>
+<td>代表每隔多久执行一次。如“*/10 * * * *”命令代表每隔10分钟执行一次命令</td>
+</tr>
+</tbody></table>
+<p>【注意】星期几和几号最好不要同时出现，因为他们定义的都是天，非常容易让管理员混乱。</p>
+<h5 id="4-相关指令"><a href="#4-相关指令" class="headerlink" title="4.相关指令"></a>4.相关指令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#终止任务调度</span><br><span class="line">crontab -r</span><br><span class="line"></span><br><span class="line">#列出当前有哪些任务调度</span><br><span class="line">crontab -l</span><br><span class="line"></span><br><span class="line">#重启任务调度</span><br><span class="line">service crond restart</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="十、Linux磁盘分区、挂载"><a href="#十、Linux磁盘分区、挂载" class="headerlink" title="十、Linux磁盘分区、挂载"></a>十、Linux磁盘分区、挂载</h4><h5 id="1-分区基础知识"><a href="#1-分区基础知识" class="headerlink" title="1.分区基础知识"></a>1.分区基础知识</h5><p>(1)分区的方式</p>
+<ul>
+<li>mbr分区</li>
+</ul>
+<p>①最多支持四个主分区</p>
+<p>②系统只能安装在主分区</p>
+<p>③扩展分区要占一个主分区</p>
+<p>④mbr最大只支持2TB，但拥有最好的兼容性</p>
+<ul>
+<li>gtp分区</li>
+</ul>
+<p>①支持无限多个分区（但操作系统可能限制，比如Windows下最多128个分区）</p>
+<p>②最大支持18EB的大容量（1EB=1024PB，1PB=1024TB）</p>
+<p>③Windows7 64位以后支持gtp</p>
+<p>(2)Windows下的磁盘分区</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715171522991.png" class="">
+
+<h5 id="2-Linux分区"><a href="#2-Linux分区" class="headerlink" title="2.Linux分区"></a>2.Linux分区</h5><p>(1)原理介绍</p>
+<p>①对于Linux来说无论有几个分区，分给哪一个目录使用，它归根结底就只有一个根目录，一个独立且唯一的文件结构，Linux中每个分区都是用来组成整个文件系统的一部分</p>
+<p>②Linux采用了一种叫“载入”的处理方法，它的整个文件系统中包含了一整套的文件和目录，且将一个分区和一个目录联系起来，这时要载入的一个分区将使它的存储空间在一个目录下获得</p>
+<p>③图解</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715173128338.png" class="">
+
+<p>(2)硬盘说明</p>
+<p>①Linux硬盘分==IDE硬盘==和==SCSI硬盘==，目前基本上是SCSI硬盘</p>
+<p>②对于IDE硬盘，驱动器标识符为“hdx~”，其中“hd”表明分区所在设备的类型，这里是指IDE硬盘；“x“为盘号（a为基本盘，b为基本从属盘，c为辅助主盘，d为辅助从属盘）；“～”代表分区，前四个分区用数字1-4表示，它们是主分区或扩展分区，从5开始就是逻辑分区。例如“hda3”表示为第一个IDE硬盘上的第三个主分区或扩展分区，“hdb2”表示为第二个IDE硬盘上的第二个主分区或扩展分区</p>
+<p>③对于SCSI硬盘，标识为“sdx~”，SCSI硬盘是用“sd”来表示分区所在设备的类型的，其余的则和IDE硬盘的表示方法一样</p>
+<p>(3)使用 <code>lsblk</code> 指令查看当前系统的分区情况</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715194001207.png" class="">
+
+<h5 id="3-虚拟机增加硬盘步骤"><a href="#3-虚拟机增加硬盘步骤" class="headerlink" title="3.虚拟机增加硬盘步骤"></a>3.虚拟机增加硬盘步骤</h5><p>①在菜单栏点击【虚拟机】→【设置】，然后操作如下</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715200823507.png" class="">
+
+<p>虚拟磁盘类型选择【SCSI】→【创建新虚拟磁盘】→磁盘大小设置为2GB，【将虚拟磁盘拆分成多个文件】</p>
+<p>【注】这时在终端中输入lsblk指令并不能看到新磁盘，需要重启虚拟机</p>
+<p>②对磁盘进行分区，在终端执行如下指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fdisk &#x2F;dev&#x2F;sdb				（对&#x2F;sdb进行分区）</span><br><span class="line">m							（显示命令行）</span><br><span class="line">n							（新建一个分区）</span><br><span class="line">p							（分区类型为主分区）</span><br><span class="line">1							（分区号）</span><br><span class="line">Enter						（默认）</span><br><span class="line">Enter						（默认）</span><br><span class="line">w							（写入分区并退出）</span><br></pre></td></tr></table></figure>
+
+<p>③格式化磁盘，在终端执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkfs -t etx4 &#x2F;dev&#x2F;sdb1</span><br><span class="line">（etx4是分区类型）</span><br></pre></td></tr></table></figure>
+
+<p>④新建目录，并挂载分区，在终端执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir &#x2F;home&#x2F;newdisk			（在&#x2F;home目录下创建一个新目录，名称为newdisk）</span><br><span class="line">mount &#x2F;dev&#x2F;sdb1 &#x2F;newdisk	（挂载分区）</span><br></pre></td></tr></table></figure>
+
+<p>【注】挂载分区和卸载分区的语法为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#挂载分区</span><br><span class="line">mount 设备名称 挂载目录</span><br><span class="line"></span><br><span class="line">#卸载分区</span><br><span class="line">umount 设备名称&#x2F;挂载目录</span><br></pre></td></tr></table></figure>
+
+<p>⑤永久挂载，在终端执行如下指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;fstab				（修改配置文件，修改内容如下图）</span><br><span class="line">&#x2F;dev&#x2F;sdb1                                 &#x2F;home&#x2F;newdisk           ext4    defaults        0 0</span><br><span class="line">（在配置文件中新增的内容）</span><br><span class="line">mount -a					（每次启动时自动挂载）</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200715211521051.png" class="">
+
+<h5 id="4-磁盘情况查询"><a href="#4-磁盘情况查询" class="headerlink" title="4.磁盘情况查询"></a>4.磁盘情况查询</h5><p>(1)查询系统整体磁盘使用情况</p>
+<ul>
+<li><p>语法</p>
+<p><code>df -h</code></p>
+</li>
+</ul>
+<p>(2)查询指定目录磁盘使用情况</p>
+<ul>
+<li><p>语法</p>
+<p><code>du 选项 目录</code></p>
+</li>
+<li><p>常用选项</p>
+<p>-s：指定目录占用大小汇总</p>
+<p>-h：带计量单位</p>
+<p>-a：含文件</p>
+<p>–max-depth=1：子目录深度</p>
+<p>-c：列出明细的同时增加汇总值</p>
+</li>
+</ul>
+<p>(3)其他实用指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#统计目录下文件的个数</span><br><span class="line">ls -l 目录名 | grep &quot;^-&quot; | wc -l</span><br><span class="line"></span><br><span class="line">#统计目录下目录的个数</span><br><span class="line">ls -l 目录名 | grep &quot;^d&quot; | wc -l</span><br><span class="line"></span><br><span class="line">#统计目录下文件的个数，包含子目录中的</span><br><span class="line">ls -lR 目录名 | grep &quot;^-&quot; | wc -l</span><br><span class="line"></span><br><span class="line">#统计目录下目录的个数，包含子目录中的</span><br><span class="line">ls -lR 目录名 | grep &quot;^d&quot; | wc -l</span><br><span class="line"></span><br><span class="line">#统计目录下文件的个数</span><br><span class="line">tree 目录名</span><br><span class="line"></span><br><span class="line">（当终端中没有某条指令时，可以通过：yum install 指令 进行安装，如：yum install tree）</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="十一、网络配置"><a href="#十一、网络配置" class="headerlink" title="十一、网络配置"></a>十一、网络配置</h4><h5 id="1-查看网络IP和网关"><a href="#1-查看网络IP和网关" class="headerlink" title="1.查看网络IP和网关"></a>1.查看网络IP和网关</h5><p>(1)查看虚拟机中的网络IP和网关</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716092954376.png" class="">
+
+<p>(2)查看Windows环境中的VMnet8网络配置</p>
+<p>①使用ipconfig指令查看</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716093443590.png" class="">
+
+<p>②界面查看</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716094250215.png" class="">
+
+<h5 id="2-ping测试主机之间网络连通"><a href="#2-ping测试主机之间网络连通" class="headerlink" title="2.ping测试主机之间网络连通"></a>2.ping测试主机之间网络连通</h5><p>①语法</p>
+<p><code>ping 目的主机</code>    测试当前服务器是否可以连接目的主机</p>
+<p>②示例</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716094728276.png" class="">
+
+<h5 id="3-Linux网络环境配置"><a href="#3-Linux网络环境配置" class="headerlink" title="3.Linux网络环境配置"></a>3.Linux网络环境配置</h5><p>①自动获取</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716095254973.png" class="">
+
+<p>【缺点】Linux启动后会自动获取IP，但每次自动获取的IP地址可能不一样，这种不适用于做服务器，因为服务器的IP需要是固定的</p>
+<p>②指定固定的IP</p>
+<p>直接修改配置文件来指定IP，并可以连接到外网（程序员推荐），在终端中输入<code>vim /etc/sysconfig/network-scripts/ifcfg-eth0</code></p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716111459270.png" class="">
+
+<p>修改后，在终端中输入<code>service network restart</code>重启服务</p>
+<h4 id="十二、进程管理"><a href="#十二、进程管理" class="headerlink" title="十二、进程管理"></a>十二、进程管理</h4><h5 id="1-基本介绍-2"><a href="#1-基本介绍-2" class="headerlink" title="1.基本介绍"></a>1.基本介绍</h5><p>①在Linux中，每个执行的程序（代码）都称为一个进程，每一个进程都分配一个ID号</p>
+<p>②每一个进程，都会对应一个父进程，而这个父进程可以复制多个子进程</p>
+<p>③每个进程都可能以两种方式存在，前台和后台，所谓前台进程就是用户目前屏幕上可以进行操作的，后台进程则是实际在操作的，但是屏幕上无法看到，通常使用后台方式执行</p>
+<p>④一般系统的服务都是以后台进程的方式存在，而且都会常驻在系统中，直到关机才结束</p>
+<h5 id="2-显示系统执行的进程"><a href="#2-显示系统执行的进程" class="headerlink" title="2.显示系统执行的进程"></a>2.显示系统执行的进程</h5><p>(1)语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#一般查看进程使用的指令为</span><br><span class="line">ps -aux</span><br><span class="line"></span><br><span class="line">ps -a：显示当前终端所有的进程信息</span><br><span class="line">ps -u：以用户的格式显示进程信息</span><br><span class="line">ps -x：显示后台进程运行的参数</span><br></pre></td></tr></table></figure>
+
+<p>ps显示的信息选项</p>
+<table>
+<thead>
+<tr>
+<th align="center">字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><strong>PID</strong></td>
+<td>进程识别号</td>
+</tr>
+<tr>
+<td align="center"><strong>TTY</strong></td>
+<td>终端机号</td>
+</tr>
+<tr>
+<td align="center"><strong>TIME</strong></td>
+<td>此进程使用CPU的总时间</td>
+</tr>
+<tr>
+<td align="center"><strong>COMMAND</strong></td>
+<td>正在执行的命令或进程名</td>
+</tr>
+</tbody></table>
+<p>(2)ps指令详解</p>
+<ul>
+<li><p>指令：<code>ps -aux | grep ×××</code></p>
+</li>
+<li><p>指令说明</p>
+<p>System V 展示风格</p>
+<p>USER：用户名称</p>
+<p>PID：进程号</p>
+<p>%CPU：进程占用CPU的百分比</p>
+<p>%MEM：进程占用物理内存的百分比</p>
+<p>VSZ：进程占用的虚拟内存大小（单位：KB）</p>
+<p>RSS：进程占用的物理内存大小（单位：KB）</p>
+<p>TT：终端名称，缩写</p>
+<p>STAT：进程状态，其中：S-睡眠，s-该进程是会话的先导进程，N-该进程拥有比普通优先级更低的优先级，R-正在运行，D-短期等待，Z-僵死进程，T-被跟踪或者被停止等待</p>
+<p>STARTED：进程的启动时间</p>
+<p>TIME：CPU时间，即进程使用CPU的总时间</p>
+<p>COMMAND：启动进程所用的命令和参数，如果过长会被截断显示</p>
+</li>
+</ul>
+<p>(3)全格式显示当前所有进程</p>
+<ul>
+<li><p>指令：<code>ps -ef | grep ×××</code></p>
+</li>
+<li><p>指令说明</p>
+<p>-e：显示所有进程    -f：全格式</p>
+<p>UID：用户ID</p>
+<p>PID：进程ID</p>
+<p>PPID：父进程ID</p>
+<p>C：CPU用于计算执行优先级的因子。数值越大，表明进程是CPU密集型运算，执行优先级会降低；数值越小，表明进程是I/O密集型运算，执行优先级会提高</p>
+<p>STIME：进程启动的时间</p>
+<p>TTY：完整的终端名称</p>
+<p>TIME：CPU时间</p>
+<p>CMD：启动进程所用的命令和参数</p>
+</li>
+</ul>
+<h5 id="3-终止进程"><a href="#3-终止进程" class="headerlink" title="3.终止进程"></a>3.终止进程</h5><ul>
+<li><p>功能介绍</p>
+<p>若是某个进程执行一半需要停止时，或是已经消耗了很大的系统资源时，此时可以考虑停止该进程</p>
+</li>
+<li><p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#通过进程号杀死进程</span><br><span class="line">kill [选项] 进程号</span><br><span class="line"></span><br><span class="line">#通过进程名杀死进程（支持通配符，在系统因负载过大而变得很慢时很有用）</span><br><span class="line">killall 进程名称</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常用选项</p>
+<p>-9：表示强迫进程立即停止</p>
+</li>
+</ul>
+<h5 id="4-查看进程树"><a href="#4-查看进程树" class="headerlink" title="4.查看进程树"></a>4.查看进程树</h5><ul>
+<li><p>语法</p>
+<p><code>pstree [选项]</code></p>
+</li>
+<li><p>常用选项</p>
+<p>-p：显示进程的PID</p>
+<p>-u：显示进程的所属用户</p>
+</li>
+</ul>
+<h5 id="5-服务管理"><a href="#5-服务管理" class="headerlink" title="5.服务管理"></a>5.服务管理</h5><ul>
+<li><p>介绍</p>
+<p>服务（service）本质就是进程，但是是运行在后台的，通常都会监听某个端口，等待其他程序的请求，比如MySQL，sshd，防火墙等，因此又称为守护进程，是Linux中非常重要的知识点</p>
+</li>
+<li><p>语法</p>
+<p><code>service 服务名 [start/stop/restart/reload/status]</code></p>
+<p>在CentOS 7.0后不再使用service，而是systemctl</p>
+</li>
+<li><p>示例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#查看防火墙状态</span><br><span class="line">service iptables status</span><br><span class="line"></span><br><span class="line">#停止防火墙</span><br><span class="line">service iptables stop</span><br><span class="line"></span><br><span class="line">#启动防火墙</span><br><span class="line">service iptables start</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>细节讨论</p>
+<p>①关闭或启用防火墙是立即生效的，可以通过<code>telnet 端口号</code>指令检查Linux某个端口是否在监听，并且可以访问</p>
+<p>【注】telnet是关闭，需要在Windows搜索（快捷键Win+S）里搜“启用或关闭windows功能”，开启Telnet Client</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200716155607834.png" class="">
+
+<p>②这种方式只是临时生效，当重启系统后还是会回归到以前对服务的设置</p>
+<p>③如果希望设置某个服务自启动或关闭永久生效，要使用 <code>chkconfig</code> 指令</p>
+</li>
+<li><p>查看服务名</p>
+<p>方式1：在终端中输入【setup】→【系统服务】，就可以看到了</p>
+<p>方式2：ls -l /etc/init.d/</p>
+</li>
+<li><p>服务的运行级别（runlevel）</p>
+<p>查看或修改默认级别：vim /etc/inittab</p>
+<p>Linux系统又7种运行级别，常用的是级别3和5</p>
+<p>•运行级别0：系统停机状态，系统默认运行级别不能设为0，否则不能正常启动</p>
+<p>•运行级别1：单用户工作状态，root权限，用于系统维护，禁止远程登录</p>
+<p>•运行级别2：多用户状态（没有NFS），不支持网络</p>
+<p>•运行级别3：完全的多用户状态（有NFS），登录后进入控制台命令行模式</p>
+<p>•运行级别4：系统未使用，保留</p>
+<p>•运行级别5：X11控制台，登录后进入图形GUI模式</p>
+<p>•运行级别6：系统正常关闭并重启，默认运行级别不能设为6，否则不能正常启动</p>
+</li>
+<li><p>开机的流程</p>
+<p>【开机】→【BIOS】→【/boot】→【init进程1】→【运行级别】→【运行级别对应的服务】</p>
+</li>
+<li><p>chkconfig指令</p>
+<p>功能：可以给每个服务的各个运行级别设置自启动/关闭</p>
+<p>语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#查看所有服务</span><br><span class="line">chkconfig --list</span><br><span class="line"></span><br><span class="line">#查看某个服务</span><br><span class="line">chkconfig --list [| grep 服务名]</span><br><span class="line">chkconfig 服务名 --list</span><br><span class="line"></span><br><span class="line">#修改某个服务在某个级别下是否执行</span><br><span class="line">chkconfig --level 级别序号(0-6) 服务名 on&#x2F;off</span><br><span class="line"></span><br><span class="line">#修改某个服务在所有级别下是否执行</span><br><span class="line">chkconfig 服务名 on&#x2F;off</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用细节</p>
+<p>chkconfig重新设置服务后自启动或关闭，需要reboot重启机器后才能生效</p>
+</li>
+</ul>
+<h5 id="6-动态监控进程"><a href="#6-动态监控进程" class="headerlink" title="6.动态监控进程"></a>6.动态监控进程</h5><ul>
+<li><p>语法</p>
+<p><code>top [选项]</code></p>
+</li>
+<li><p>特点：top与ps命令很相似，都用来显示正在执行的进程，top与ps最大的不同在于top每隔一段时间更新一下正在运行的进程的状态</p>
+</li>
+<li><p>常用选项</p>
+<table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-d 秒数</td>
+<td>指定top命令每隔几秒更新（默认是3秒）</td>
+</tr>
+<tr>
+<td align="center">-i</td>
+<td>使top不显示任何闲置或者僵死的进程</td>
+</tr>
+<tr>
+<td align="center">-p</td>
+<td>通过指定监控进程ID来监控某个进程的状态</td>
+</tr>
+</tbody></table>
+<p>交互操作</p>
+<table>
+<thead>
+<tr>
+<th align="center">操作</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">P</td>
+<td>以CPU的使用率排序（默认就是此项）</td>
+</tr>
+<tr>
+<td align="center">M</td>
+<td>以内存的使用率排序</td>
+</tr>
+<tr>
+<td align="center">N</td>
+<td>以PID排序</td>
+</tr>
+<tr>
+<td align="center">q</td>
+<td>退出top</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h5 id="7-查看系统网络情况"><a href="#7-查看系统网络情况" class="headerlink" title="7.查看系统网络情况"></a>7.查看系统网络情况</h5><ul>
+<li><p>语法</p>
+<p><code>netstat [选项] [| grep 服务名]</code></p>
+</li>
+<li><p>常用选项</p>
+<p>-an：按一定顺序排列输出</p>
+<p>-p：显示哪个进程在调用</p>
+</li>
+</ul>
+<h4 id="十三、RPM和YUM"><a href="#十三、RPM和YUM" class="headerlink" title="十三、RPM和YUM"></a>十三、RPM和YUM</h4><h5 id="1-RPM包的管理"><a href="#1-RPM包的管理" class="headerlink" title="1.RPM包的管理"></a>1.RPM包的管理</h5><ul>
+<li><p>介绍</p>
+<p>一种用于互联网下载包的打包及安装工具，包含在某些Linux分发版中，生成具有.RPM扩展名的文件。RPM是RedHat package manager（RedHat软件包管理工具）的缩写，类似Windows的setup.exe，这一文件格式名称虽然打上了RedHat的标志，但是理念是通用的。</p>
+</li>
+<li><p>RPM包名基本格式</p>
+<p>例如：firefox-45.0.1-1.el6.centos.x86_64</p>
+<p>名称：firefox；版本号：45.0.1-1；适用操作系统：el6.centos.x86_64（表示centos6.×的64位系统，如果是 i686、i386表示32位系统，noarch表示通用）</p>
+</li>
+<li><p>RPM包的查询指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#查询所有已安装的RPM软件包</span><br><span class="line">rpm -qa</span><br><span class="line"></span><br><span class="line">#查询×××软件包</span><br><span class="line">rpm -qa | grep ×××</span><br><span class="line"></span><br><span class="line">#查询×××软件包是否安装</span><br><span class="line">rpm -q ×××</span><br><span class="line"></span><br><span class="line">#查询×××软件包的信息</span><br><span class="line">rpm -qi ×××</span><br><span class="line"></span><br><span class="line">#查询×××软件包中的文件</span><br><span class="line">rpm -ql ×××</span><br><span class="line"></span><br><span class="line">#查询文件所属的软件包</span><br><span class="line">rpm -qf 文件全路径名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>卸载RPM包</p>
+<p>①语法</p>
+<p><code>rpm -e RPM包的名称</code></p>
+<p>②细节问题</p>
+<p>a.如果其他软件包依赖于你要卸载的软件包，卸载时则会产生错误信息</p>
+<p>b.如果就是要删除“foo”这个RPM包，可以增加参数“–nodeps”就可以强制删除，如：<code>rpm -e --nodeps foo</code>，但是一般不推荐这样做，因为依赖于该软件包的程序可能无法运行</p>
+</li>
+<li><p>安装RPM包</p>
+<p>①语法</p>
+<p><code>rpm -ivh RPM包全路径名称</code></p>
+<p>②参数说明</p>
+<p>i：install，安装</p>
+<p>v：verbose，提示</p>
+<p>h：hash，进度条</p>
+</li>
+</ul>
+<h5 id="2-YUM包的管理"><a href="#2-YUM包的管理" class="headerlink" title="2.YUM包的管理"></a>2.YUM包的管理</h5><ul>
+<li><p>介绍</p>
+<p>YUM是一个<span style='color:red;'>Shell前端软件包管理器</span>，基于RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以<span style='color:red;'>自动处理依赖性关系</span>，并且一次性安装所有依赖的软件包，使用YUM的前提是可以联网。</p>
+</li>
+<li><p>基本指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#查询YUM服务器是否有需要安装的软件包</span><br><span class="line">yum list | grep ×××软件列表</span><br><span class="line"></span><br><span class="line">#安装指定的YUM包</span><br><span class="line">yum install ×××包名</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<h4 id="十四、搭建JavaEE环境"><a href="#十四、搭建JavaEE环境" class="headerlink" title="十四、搭建JavaEE环境"></a>十四、搭建JavaEE环境</h4><h5 id="1-安装JDK"><a href="#1-安装JDK" class="headerlink" title="1.安装JDK"></a>1.安装JDK</h5><ul>
+<li><p>安装步骤</p>
+<p>①先将软件包通过Xftp5从Windows系统传输到CentOS的/opt目录下</p>
+<p>②解压缩到/opt：<code>tar -zxvf jdk-7u79-linux-x64.gz</code></p>
+<p>③配置环境变量的配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#进入配置文件</span><br><span class="line">vim &#x2F;etc&#x2F;profile</span><br><span class="line"></span><br><span class="line">#在文件末尾加上下面三行，保存并退出</span><br><span class="line">JAVA_HOME&#x3D;&#x2F;opt&#x2F;jdk1.7.0_79</span><br><span class="line">PATH&#x3D;&#x2F;opt&#x2F;jdk1.7.0_79&#x2F;bin:$PATH</span><br><span class="line">export JAVA_HOME PATH</span><br></pre></td></tr></table></figure>
+
+<p>④需要注销用户，环境变量才能生效</p>
+<p>如果是在运行级别3，logout；如果是在运行级别5，点击CentOS界面上方用户名→【退出】→【注销】→重新登录</p>
+<p>⑤在任何目录下都可以使用java和javac指令了</p>
+</li>
+</ul>
+<h5 id="2-安装TOMCAT"><a href="#2-安装TOMCAT" class="headerlink" title="2.安装TOMCAT"></a>2.安装TOMCAT</h5><ul>
+<li><p>安装步骤</p>
+<p>①先将软件包通过Xftp5从Windows系统传输到CentOS的/opt目录下</p>
+<p>②解压缩到/opt：<code>tar -zxvf apache-tomcat-7.0.70.tar.gz</code></p>
+<p>③进入到tomcat的bin目录：<code>cd apache-tomcat-7.0.70/bin</code></p>
+<p>④启动tomcat：<code>./startup.sh</code></p>
+<p>此时使用Linux的本地浏览器输入<code>localhost:8080</code>是可以访问到tomcat的</p>
+<p>⑤开放8080端口，让外网也能访问到tomcat：<code>vim /etc/sysconfig/iptables</code>，加入下图中的内容</p>
+<img src="/2020/07/12/Linux%E5%85%A5%E9%97%A8/image-20200717103204382.png" class="">
+
+<p>⑥重启防火墙：<code>service iptables restart</code></p>
+<p>⑦在Windows下访问tomcat：在浏览器中输出<code>http://自己的LinuxIP:8080</code></p>
+</li>
+</ul>
+<h5 id="3-安装ECLIPSE"><a href="#3-安装ECLIPSE" class="headerlink" title="3.安装ECLIPSE"></a>3.安装ECLIPSE</h5><ul>
+<li><p>安装步骤</p>
+<p>①先将软件包通过Xftp5从Windows系统传输到CentOS的/opt目录下</p>
+<p>②解压缩到/opt：<code>tar -zxvf eclipse-jee-mars-2-linux-gtk-x86_64.tar.gz</code></p>
+<p>③启动eclipse</p>
+<p>启动方法1：创建快捷方式，在Linux系统的/opt/eclipse目录下找到eclipse执行文件，右击【创建链接】，将链接剪切到桌面，以后就可以通过快捷方式打开eclipse了</p>
+<p>启动方法2：在终端中打开，先进入目录<code>cd /opt/eclipse</code>，再执行<code>./eclipse</code>即可</p>
+</li>
+</ul>
+<h5 id="4-安装MySQL"><a href="#4-安装MySQL" class="headerlink" title="4.安装MySQL"></a>4.安装MySQL</h5><ul>
+<li><p>安装步骤</p>
+<p>①卸载旧版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#检查是否装有MySQL Server</span><br><span class="line">rpm -qa | grep mysql</span><br><span class="line"></span><br><span class="line">#我查询到的结果如下</span><br><span class="line">mysql-libs-5.1.73-7.el6.x86_64</span><br><span class="line"></span><br><span class="line">#将其删除（强力删除，因为其有依赖文件）</span><br><span class="line">rpm -e --nodeps mysql-libs</span><br></pre></td></tr></table></figure>
+
+<p>②安装MySQL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">#需要联网，先检查是否联网</span><br><span class="line">ping www.baidu.com</span><br><span class="line"></span><br><span class="line">#安装编译代码需要的包</span><br><span class="line">yum -y install make gcc-c++ cmake bison-devel  ncurses-devel</span><br><span class="line"></span><br><span class="line">#将软件包通过Xftp5从Windows系统传输到CentOS的&#x2F;opt目录下</span><br><span class="line"></span><br><span class="line">#解压缩到&#x2F;opt</span><br><span class="line">tar -zxvf mysql-5.6.14.tar.gz</span><br><span class="line"></span><br><span class="line">#进入源码包</span><br><span class="line">cd mysql-5.6.14</span><br><span class="line"></span><br><span class="line">#编译安装</span><br><span class="line">cmake -DCMAKE_INSTALL_PREFIX&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql -DMYSQL_DATADIR&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;data -DSYSCONFDIR&#x3D;&#x2F;etc -DWITH_MYISAM_STORAGE_ENGINE&#x3D;1 -DWITH_INNOBASE_STORAGE_ENGINE&#x3D;1 -DWITH_MEMORY_STORAGE_ENGINE&#x3D;1 -DWITH_READLINE&#x3D;1 -DMYSQL_UNIX_ADDR&#x3D;&#x2F;var&#x2F;lib&#x2F;mysql&#x2F;mysql.sock -DMYSQL_TCP_PORT&#x3D;3306 -DENABLED_LOCAL_INFILE&#x3D;1 -DWITH_PARTITION_STORAGE_ENGINE&#x3D;1 -DEXTRA_CHARSETS&#x3D;all -DDEFAULT_CHARSET&#x3D;utf8 -DDEFAULT_COLLATION&#x3D;utf8_general_ci</span><br><span class="line"></span><br><span class="line">#编译并安装</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+<p>③配置MySQL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#查看MySQL的用户及用户组，如果没有就创建</span><br><span class="line">cat &#x2F;etc&#x2F;passwd					查看用户列表</span><br><span class="line">cat &#x2F;etc&#x2F;group					查看用户组列表</span><br><span class="line"></span><br><span class="line">#创建mysql组和用户</span><br><span class="line">groupadd mysql</span><br><span class="line">useradd -g mysql mysql</span><br><span class="line"></span><br><span class="line">#修改权限，将&#x2F;usr&#x2F;local&#x2F;mysql的所有者和所在组都改成mysql</span><br><span class="line">chown -R mysql:mysql &#x2F;usr&#x2F;local&#x2F;mysql</span><br><span class="line"></span><br><span class="line">#进入安装路径</span><br><span class="line">cd &#x2F;usr&#x2F;local&#x2F;mysql</span><br><span class="line"></span><br><span class="line">#执行初始化配置脚本</span><br><span class="line">scripts&#x2F;mysql_install_db --basedir&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql --datadir&#x3D;&#x2F;usr&#x2F;local&#x2F;mysql&#x2F;data --user&#x3D;mysql</span><br></pre></td></tr></table></figure>
+
+<p>④启动MySQL</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">#添加服务，拷贝服务脚本到init.d目录，在&#x2F;usr&#x2F;local&#x2F;mysql下执行</span><br><span class="line">cp support-files&#x2F;mysql.server &#x2F;etc&#x2F;init.d&#x2F;mysql</span><br><span class="line"></span><br><span class="line">#设置开机启动</span><br><span class="line">chkconfig mysql on</span><br><span class="line"></span><br><span class="line">#启动MySQL</span><br><span class="line">service mysql start</span><br><span class="line"></span><br><span class="line">#修改root密码</span><br><span class="line">cd &#x2F;usr&#x2F;local&#x2F;mysql&#x2F;bin</span><br><span class="line">.&#x2F;mysql -u root -p</span><br><span class="line">set password &#x3D; password(&#39;××××&#39;);</span><br></pre></td></tr></table></figure>
+
+<p>【注】在启动MySQL服务时，会按照一定次序搜索my.cnf，先在/etc目录下找，找不到则会搜索”$basedir/my.cnf”，在本例中就是 /usr/local/mysql/my.cnf，这是新版MySQL的配置文件的默认位置！</p>
+</li>
+</ul>
+<p>  【注意】在CentOS 6.8版操作系统的最小安装完成后，在/etc目录下会存在一个my.cnf文件，需要将此文件更名为其他的名字，如：/etc/my.cnf.bak，否则，该文件会干扰源码安装的MySQL的正确配置，造成无法启动。</p>
+<p>  修改名称，防止干扰：<code>mv /etc/my.cnf /etc/my.cnf.bak</code></p>
+<blockquote>
+<p>【说明】&copy;本文为学习笔记，参考自视频<a href="https://www.bilibili.com/video/BV1dW411M7xL" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1dW411M7xL</a>，如有侵权，请联系我删除。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/06/29/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/" rel="prev" title="MySQL数据库基础">
+      <i class="fa fa-chevron-left"></i> MySQL数据库基础
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一、VM和Linux系统-CentOS-的安装"><span class="nav-number">1.</span> <span class="nav-text">一、VM和Linux系统(CentOS)的安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装VM"><span class="nav-number">1.1.</span> <span class="nav-text">1.安装VM</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-安装CentOS"><span class="nav-number">1.2.</span> <span class="nav-text">2.安装CentOS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-CentOS的终端使用和联网"><span class="nav-number">1.3.</span> <span class="nav-text">3.CentOS的终端使用和联网</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-安装VMTools"><span class="nav-number">1.4.</span> <span class="nav-text">4.安装VMTools</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二、Linux的目录结构"><span class="nav-number">2.</span> <span class="nav-text">二、Linux的目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-基本介绍"><span class="nav-number">2.1.</span> <span class="nav-text">1.基本介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-具体的目录结构"><span class="nav-number">2.2.</span> <span class="nav-text">2.具体的目录结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Linux目录总结"><span class="nav-number">2.3.</span> <span class="nav-text">3.Linux目录总结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三、远程登录Linux系统"><span class="nav-number">3.</span> <span class="nav-text">三、远程登录Linux系统</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Xshell5介绍"><span class="nav-number">3.1.</span> <span class="nav-text">1.Xshell5介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Xshell5的安装、配置和使用"><span class="nav-number">3.2.</span> <span class="nav-text">2.Xshell5的安装、配置和使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Xftp5介绍"><span class="nav-number">3.3.</span> <span class="nav-text">3.Xftp5介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-Xftp5的安装、配置和使用"><span class="nav-number">3.4.</span> <span class="nav-text">4.Xftp5的安装、配置和使用</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四、vi和vim编辑器"><span class="nav-number">4.</span> <span class="nav-text">四、vi和vim编辑器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-vi和vim的基本介绍"><span class="nav-number">4.1.</span> <span class="nav-text">1.vi和vim的基本介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-vi和vim的三种常见模式"><span class="nav-number">4.2.</span> <span class="nav-text">2.vi和vim的三种常见模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-vi和vim模式的相互切换"><span class="nav-number">4.3.</span> <span class="nav-text">3.vi和vim模式的相互切换</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-快捷键的使用"><span class="nav-number">4.4.</span> <span class="nav-text">4.快捷键的使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-vi-vim键盘图"><span class="nav-number">4.5.</span> <span class="nav-text">5.vi&#x2F;vim键盘图</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#五、开机、重启和用户登录、注销"><span class="nav-number">5.</span> <span class="nav-text">五、开机、重启和用户登录、注销</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-关机-amp-重启命令"><span class="nav-number">5.1.</span> <span class="nav-text">1.关机&amp;重启命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-用户登录和注销"><span class="nav-number">5.2.</span> <span class="nav-text">2.用户登录和注销</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#六、用户管理"><span class="nav-number">6.</span> <span class="nav-text">六、用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-基本介绍-1"><span class="nav-number">6.1.</span> <span class="nav-text">1.基本介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-添加用户"><span class="nav-number">6.2.</span> <span class="nav-text">2.添加用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-给用户指定或者修改密码"><span class="nav-number">6.3.</span> <span class="nav-text">3.给用户指定或者修改密码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-删除用户"><span class="nav-number">6.4.</span> <span class="nav-text">4.删除用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-查询用户信息"><span class="nav-number">6.5.</span> <span class="nav-text">5.查询用户信息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-切换用户"><span class="nav-number">6.6.</span> <span class="nav-text">6.切换用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-查看当前用户-登录用户"><span class="nav-number">6.7.</span> <span class="nav-text">7.查看当前用户&#x2F;登录用户</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-用户组"><span class="nav-number">6.8.</span> <span class="nav-text">8.用户组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-增加用户时直接加上组"><span class="nav-number">6.9.</span> <span class="nav-text">9.增加用户时直接加上组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-修改用户的组"><span class="nav-number">6.10.</span> <span class="nav-text">10.修改用户的组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-用户和组的相关文件"><span class="nav-number">6.11.</span> <span class="nav-text">11.用户和组的相关文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#七、实用指令"><span class="nav-number">7.</span> <span class="nav-text">七、实用指令</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-指定运行级别"><span class="nav-number">7.1.</span> <span class="nav-text">1.指定运行级别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-切换到指定运行级别的指令"><span class="nav-number">7.2.</span> <span class="nav-text">2.切换到指定运行级别的指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-帮助指令"><span class="nav-number">7.3.</span> <span class="nav-text">3.帮助指令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-文件目录类"><span class="nav-number">7.4.</span> <span class="nav-text">4.文件目录类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-时间日期类"><span class="nav-number">7.5.</span> <span class="nav-text">5.时间日期类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-搜索查找类"><span class="nav-number">7.6.</span> <span class="nav-text">6.搜索查找类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-压缩和解压类"><span class="nav-number">7.7.</span> <span class="nav-text">7.压缩和解压类</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#八、组管理和权限管理"><span class="nav-number">8.</span> <span class="nav-text">八、组管理和权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-Linux组的基本介绍"><span class="nav-number">8.1.</span> <span class="nav-text">1.Linux组的基本介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-文件-目录所有者"><span class="nav-number">8.2.</span> <span class="nav-text">2.文件&#x2F;目录所有者</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-组的创建"><span class="nav-number">8.3.</span> <span class="nav-text">3.组的创建</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-文件-目录所在组"><span class="nav-number">8.4.</span> <span class="nav-text">4.文件&#x2F;目录所在组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-其他组"><span class="nav-number">8.5.</span> <span class="nav-text">5.其他组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-改变用户所在组"><span class="nav-number">8.6.</span> <span class="nav-text">6.改变用户所在组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-权限的基本介绍"><span class="nav-number">8.7.</span> <span class="nav-text">7.权限的基本介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#8-rwx-权限详解"><span class="nav-number">8.8.</span> <span class="nav-text">8.[rwx]权限详解</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#9-权限修改"><span class="nav-number">8.9.</span> <span class="nav-text">9.权限修改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#10-修改文件所有者"><span class="nav-number">8.10.</span> <span class="nav-text">10.修改文件所有者</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#11-修改文件所在组"><span class="nav-number">8.11.</span> <span class="nav-text">11.修改文件所在组</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#九、crond任务调度"><span class="nav-number">9.</span> <span class="nav-text">九、crond任务调度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-概述"><span class="nav-number">9.1.</span> <span class="nav-text">1.概述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-语法"><span class="nav-number">9.2.</span> <span class="nav-text">2.语法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-参数细节说明"><span class="nav-number">9.3.</span> <span class="nav-text">3.参数细节说明</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-相关指令"><span class="nav-number">9.4.</span> <span class="nav-text">4.相关指令</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十、Linux磁盘分区、挂载"><span class="nav-number">10.</span> <span class="nav-text">十、Linux磁盘分区、挂载</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-分区基础知识"><span class="nav-number">10.1.</span> <span class="nav-text">1.分区基础知识</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-Linux分区"><span class="nav-number">10.2.</span> <span class="nav-text">2.Linux分区</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-虚拟机增加硬盘步骤"><span class="nav-number">10.3.</span> <span class="nav-text">3.虚拟机增加硬盘步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-磁盘情况查询"><span class="nav-number">10.4.</span> <span class="nav-text">4.磁盘情况查询</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十一、网络配置"><span class="nav-number">11.</span> <span class="nav-text">十一、网络配置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-查看网络IP和网关"><span class="nav-number">11.1.</span> <span class="nav-text">1.查看网络IP和网关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-ping测试主机之间网络连通"><span class="nav-number">11.2.</span> <span class="nav-text">2.ping测试主机之间网络连通</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-Linux网络环境配置"><span class="nav-number">11.3.</span> <span class="nav-text">3.Linux网络环境配置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十二、进程管理"><span class="nav-number">12.</span> <span class="nav-text">十二、进程管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-基本介绍-2"><span class="nav-number">12.1.</span> <span class="nav-text">1.基本介绍</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-显示系统执行的进程"><span class="nav-number">12.2.</span> <span class="nav-text">2.显示系统执行的进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-终止进程"><span class="nav-number">12.3.</span> <span class="nav-text">3.终止进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-查看进程树"><span class="nav-number">12.4.</span> <span class="nav-text">4.查看进程树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-服务管理"><span class="nav-number">12.5.</span> <span class="nav-text">5.服务管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-动态监控进程"><span class="nav-number">12.6.</span> <span class="nav-text">6.动态监控进程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-查看系统网络情况"><span class="nav-number">12.7.</span> <span class="nav-text">7.查看系统网络情况</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十三、RPM和YUM"><span class="nav-number">13.</span> <span class="nav-text">十三、RPM和YUM</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-RPM包的管理"><span class="nav-number">13.1.</span> <span class="nav-text">1.RPM包的管理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-YUM包的管理"><span class="nav-number">13.2.</span> <span class="nav-text">2.YUM包的管理</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#十四、搭建JavaEE环境"><span class="nav-number">14.</span> <span class="nav-text">十四、搭建JavaEE环境</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-安装JDK"><span class="nav-number">14.1.</span> <span class="nav-text">1.安装JDK</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-安装TOMCAT"><span class="nav-number">14.2.</span> <span class="nav-text">2.安装TOMCAT</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-安装ECLIPSE"><span class="nav-number">14.3.</span> <span class="nav-text">3.安装ECLIPSE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-安装MySQL"><span class="nav-number">14.4.</span> <span class="nav-text">4.安装MySQL</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Leo-Fang"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Leo-Fang</p>
+  <div class="site-description" itemprop="description">记录学习笔记</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Leo-Fang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Leo-Fang" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:lefang0530@gmail.com" title="E-Mail → mailto:lefang0530@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo-Fang</span>
+</div>
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共25.9k字</span>
+</div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'V6ESupTFrlogGO5niagnkvsh-gzGzoHsz',
+      appKey     : 'aA5SS2K4SpyjvaSTnAUoxupj',
+      placeholder: "ฅ՞•ﻌ•՞ฅ来唠唠嗑呗~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
